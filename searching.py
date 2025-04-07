@@ -29,24 +29,41 @@ def linear_searching(seq, number):
     positions = []
     index = 0
 
-    for i in seq:
-        if i == number:
+    while index < len(seq):
+        if seq[index] == number:
             count += 1
             positions.append(index)
-            index += 1
-        else:
-            index += 1
+        index += 1
 
     slovnik = {'positions': positions, 'count': count}
     return slovnik
+
+
+def pattern_search(seq, pattern):
+    positions = []
+    index = 0
+
+    while index < len(seq):
+        if seq[index:index+3] == pattern:
+            positions.append(index)
+        index += 1
+
+    return positions
+
 
 
 
 def main():
     file_name = 'sequential.json'
 
-    seq = read_data(file_name, field='unordered_numbers')
+    seq = read_data(file_name, field='dna_sequence')
     print(seq)
+
+    # number = linear_searching(seq, 0)
+    # print(number)
+
+    positions = pattern_search(seq, 'ATA')
+    print(positions)
 
 
 if __name__ == '__main__':
